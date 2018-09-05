@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="html2canvas" style="background: black;color: white;">
+    <p>html2canvas 的使用非常简单，简单到只需要传入一个 DOM 元素，然后通过回调拿到 canvas</p>
+    <p><img src="img/dog.jpg" width="250px;"></p>
+</div>
+<div id="newDiv"></div>
+<button onclick="touchMe()">点我</button>
+<button onclick="print()">导出</button>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABfAAAAA6CAYAAAD/cXgCAAAGqElEQVR4Xu3YMREAAAwCseLfdG38kCrgQid2jgABAgQIECBAgAABAgQIECBAgAABAgQIEMgJLJdIIAIECBAgQIAAAQIECBAgQIAAAQIECBAgQOAM+J6AAAECBAgQIECAAAECBAgQIECAAAECBAgEBQz4wVJEIkCAAAECBAgQIECAAAECBAgQIECAAAECBnw/QIAAAQIECBAgQIAAAQIECBAgQIAAAQIEggIG/GApIhEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQO+HyBAgAABAgQIECBAgAABAgQIECBAgAABAkEBA36wFJEIECBAgAABAgQIECBAgAABAgQIECBAgIAB3w8QIECAAAECBAgQIECAAAECBAgQIECAAIGggAE/WIpIBAgQIECAAAECBAgQIECAAAECBAgQIEDAgO8HCBAgQIAAAQIECBAgQIAAAQIECBAgQIBAUMCAHyxFJAIECBAgQIAAAQIECBAgQIAAAQIECBAgYMD3AwQIECBAgAABAgQIECBAgAABAgQIECBAIChgwA+WIhIBAgQIECBAgAABAgQIECBAgAABAgQIEDDg+wECBAgQIECAAAECBAgQIECAAAECBAgQIBAUMOAHSxGJAAECBAgQIECAAAECBAgQIECAAAECBAgY8P0AAQIECBAgQIAAAQIECBAgQIAAAQIECBAIChjwg6WIRIAAAQIECBAgQIAAAQIECBAgQIAAAQIEDPh+gAABAgQIECBAgAABAgQIECBAgAABAgQIBAUM+MFSRCJAgAABAgQIECBAgAABAgQIECBAgAABAgZ8P0CAAAECBAgQIECAAAECBAgQIECAAAECBIICBvxgKSIRIECAAAECBAgQIECAAAECBAgQIECAAAEDvh8gQIAAAQIECBAgQIAAAQIECBAgQIAAAQJBAQN+sBSRCBAgQIAAAQIECBAgQIAAAQIECBAgQICAAd8PECBAgAABAgQIECBAgAABAgQIECBAgACBoIABP1iKSAQIECBAgAABAgQIECBAgAABAgQIECBAwIDvBwgQIECAAAECBAgQIECAAAECBAgQIECAQFDAgB8sRSQCBAgQIECAAAECBAgQIECAAAECBAgQIGDA9wMECBAgQIAAAQIECBAgQIAAAQIECBAgQCAoYMAPliISAQIECBAgQIAAAQIECBAgQIAAAQIECBAw4PsBAgQIECBAgAABAgQIECBAgAABAgQIECAQFDDgB0sRiQABAgQIECBAgAABAgQIECBAgAABAgQIGPD9AAECBAgQIECAAAECBAgQIECAAAECBAgQCAoY8IOliESAAAECBAgQIECAAAECBAgQIECAAAECBAz4foAAAQIECBAgQIAAAQIECBAgQIAAAQIECAQFDPjBUkQiQIAAAQIECBAgQIAAAQIECBAgQIAAAQIGfD9AgAABAgQIECBAgAABAgQIECBAgAABAgSCAgb8YCkiESBAgAABAgQIECBAgAABAgQIECBAgAABA74fIECAAAECBAgQIECAAAECBAgQIECAAAECQQEDfrAUkQgQIECAAAECBAgQIECAAAECBAgQIECAgAHfDxAgQIAAAQIECBAgQIAAAQIECBAgQIAAgaCAAT9YikgECBAgQIAAAQIECBAgQIAAAQIECBAgQMCA7wcIECBAgAABAgQIECBAgAABAgQIECBAgEBQwIAfLEUkAgQIECBAgAABAgQIECBAgAABAgQIECBgwPcDBAgQIECAAAECBAgQIECAAAECBAgQIEAgKGDAD5YiEgECBAgQIECAAAECBAgQIECAAAECBAgQMOD7AQIECBAgQIAAAQIECBAgQIAAAQIECBAgEBQw4AdLEYkAAQIECBAgQIAAAQIECBAgQIAAAQIECBjw/QABAgQIECBAgAABAgQIECBAgAABAgQIEAgKGPCDpYhEgAABAgQIECBAgAABAgQIECBAgAABAgQM+H6AAAECBAgQIECAAAECBAgQIECAAAECBAgEBQz4wVJEIkCAAAECBAgQIECAAAECBAgQIECAAAECBnw/QIAAAQIECBAgQIAAAQIECBAgQIAAAQIEggIG/GApIhEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQO+HyBAgAABAgQIECBAgAABAgQIECBAgAABAkEBA36wFJEIECBAgAABAgQIECBAgAABAgQIECBAgIAB3w8QIECAAAECBAgQIECAAAECBAgQIECAAIGggAE/WIpIBAgQIECAAAECBAgQIECAAAECBAgQIEDgAS5FADvoxXELAAAAAElFTkSuQmCC" alt="">
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<script>
+    function touchMe() {
+        var w = $("#html2canvas").width();
+        var h = $("#html2canvas").height();//要将 canvas 的宽高设置成容器宽高的 2 倍
+        var canvas = document.createElement("canvas");
+        canvas.width = w * 2;
+        canvas.height = h * 2;
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        var context = canvas.getContext("2d");//然后将画布缩放，将图像放大两倍画到画布上
+        context.scale(2,2);
+
+        var str = document.getElementById("html2canvas");
+        html2canvas(str, {
+            canvas: canvas,
+            onrendered: function (canvas) {
+                var dataUrl = canvas.toDataURL();
+                var newImg = document.createElement("img");
+                newImg.style.width = canvas.width / 2 + "px";
+                newImg.style.height = canvas.height / 2 + "px";
+                newImg.src =  dataUrl;
+                console.log(newImg.style.width+"      "+newImg.style.height+"     "+"f");
+                $('#html2canvas').html($(newImg));
+
+            }
+        });
+    }
+
+    function print() {
+        var iframe = document.createElement('iframe');
+        iframe.src="table.html";
+        iframe.width = "100%";
+        iframe.height = "1000";
+        document.body.appendChild(iframe);
+    }
+</script>
+</body>
+</html>

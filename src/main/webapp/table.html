@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #table1 th,td{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="table1">
+    <table  border="1">
+        <tr>
+            <th>姓名</th>
+            <th>班级</th>
+            <th>地址</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>一班</td>
+            <td>广东</td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>一班</td>
+            <td>广东</td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>一班</td>
+            <td>广东</td>
+        </tr>
+    </table>
+</div>
+
+<button onclick="save()">确定</button>
+
+<div id="newDiv"></div>
+
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<script>
+    function save2(){
+        // 图片导出为 png 格式
+        var type = 'png';
+        var imgData = document.getElementsByTagName("img")[0].src;
+        var _fixType = function(type) {
+            type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+            var r = type.match(/png|jpeg|bmp|gif/)[0];
+            return 'image/' + r;
+        };
+        // 加工image data，替换mime type
+        imgData = imgData.replace(_fixType(type),'image/octet-stream');
+        /**
+         * 在本地进行文件保存
+         * @param  {String} data     要保存到本地的图片数据
+         * @param  {String} filename 文件名
+         */
+        var saveFile = function(data, filename){
+            var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            save_link.href = data;
+            save_link.download = filename;
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            save_link.dispatchEvent(event);
+        };
+        // 下载后的问题名
+        var filename = 'card_' + (new Date()).getTime() + '.' + type;
+        // download
+        saveFile(imgData,filename);
+    }
+
+    function save(){
+        var w = $("#table1").width();
+        var h = $("#table1").height();//要将 canvas 的宽高设置成容器宽高的 2 倍
+        var canvas = document.createElement("canvas");
+        canvas.width = w * 2;
+        canvas.height = h * 2;
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        var context = canvas.getContext("2d");//然后将画布缩放，将图像放大两倍画到画布上
+        context.scale(2,2);
+
+        var str = document.getElementById("table1");
+        html2canvas(str, {
+            canvas: canvas,
+            onrendered: function (canvas) {
+                var dataUrl = canvas.toDataURL();
+                var newImg = document.createElement("img");
+                newImg.style.width = canvas.width / 2 + "px";
+                newImg.style.height = canvas.height / 2 + "px";
+                newImg.src =  dataUrl;
+                console.log(newImg.style.width+"      "+newImg.style.height+"     "+"f");
+                $('#newDiv').html($(newImg));
+
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>
